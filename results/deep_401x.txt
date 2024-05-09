@@ -1,0 +1,6 @@
+deep_40 Resource Use :Full Dataset: 
+CPU Usage Before Prediction: 10.6
+Memory Usage Before Prediction: 9100197888
+CPU Usage After Prediction: 5.9
+Memory Usage After Prediction: 9212510208
+Prediction Time: 10.820823669433594 seconds

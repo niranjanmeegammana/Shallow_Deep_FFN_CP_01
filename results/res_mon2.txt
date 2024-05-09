@@ -1,0 +1,61 @@
+Model, Exe s20, Exe d20, Exe s40, Exe d40
+Pid, 11008, 13696, 3840, 16284
+cpu, 5.63, 5.31, 6.75, 6.59
+memory KB, 407708, 414108, 473632, 482068
+
+
+Exe s20, Exe d20, Exe s40, Exe d40 are four ANN models for a binary classification task
+Exe s20 and Exe s40 have one hidden layer with 512 nuerons
+Exe s20 use 20 inputs , Exe s40 use 40 inputs 
+Exe d20 and Exe d40 have 7 hidden layer with 256, 128, 64, 32, 16, 8, 4 nurons
+Exe d20 use 20 inputs , Exe d40 use 40 inputs 
+
+Analyse , comapare and contrast cpu usage %, memory (KB) and Prediction Time (S)  given above after model testing with 186,000 samples 
+explain reasons for a research paper for conference - topic deep and shallow model comparision for ioT server attack detection
+
+
+insights into the trade-offs between shallow and deep architectures for IoT server attack detection.
+Shallow models with simpler architectures exhibit lower CPU usage compared to deep models,lower computational complexity 
+
+Deep models due to the presence of multiple layers, resulting in higher CPU usage. This difference in CPU usage may affect the scalability and efficiency of the detection system, especially in resource-constrained IoT environments.
+
+The amount of RAM required to store and process the model parameters and intermediate computations.Shallow models demonstrate lower memory consumption compared to deep models
+Deep models, with their increased complexity, require more memory to store the parameters and activations of multiple layers.
+Memory efficiency is crucial in IoT environments where resources are limited, and minimizing memory overhead enhances the feasibility of deployment on resource-constrained devices.
+
+Shallow models demonstrate faster prediction times compared to deep models faster inference times.
+   - Deep models require more time for forward propagation, resulting in slower prediction times.
+   
+   - The difference in prediction time between shallow and deep models is critical for real-time applications, especially in IoT server attack detection scenarios where timely responses are essential to mitigate security threats.
+
+the performance trade-offs between shallow and deep models for IoT server attack detection, providing valuable insights for researchers and practitioners in the field.
+
+-the findings contribute to the ongoing discourse on deep and shallow model comparison, offering practical implications for designing efficient and scalable detection systems tailored to IoT server security.
+- The research paper underscores the importance of optimizing model architecture and resource utilization to enhance the effectiveness and feasibility of IoT server attack detection mechanisms in real-world deployments.
+
+In conclusion, the comparative analysis of CPU usage %, memory consumption, and prediction time elucidates the performance characteristics of shallow and deep ANN models for IoT server attack detection, laying the groundwork for future research and development in this domain.
+
+
+Shallow models with simpler architectures and lower computational complexity exhibit lower CPU and memory usage compared to deep models with multiple layers. This difference may affect the scalability and efficiency of the detection system, especially in resource-constrained IoT environments.
+
+The lower memory consumption of Shallow models  is due to less
+amount of RAM required to store and process the model parameters and intermediate computations.
+Memory efficiency is crucial in IoT environments where resources are limited, and minimizing memory overhead enhances the feasibility of deployment on resource-constrained devices.
+
+Shallow models demonstrate faster prediction times compared to deep models faster inference times.Deep models require more time for forward propagation, resulting in slower prediction times. The difference in prediction time between shallow and deep models is critical for real-time applications, especially in IoT server attack detection scenarios where timely responses are essential to mitigate security threats.
+
+the performance trade-offs between shallow and deep models for IoT server attack detection, provide valuable insights for researchers and practitioners in the field.
+
+----------
+
+The performance differences between shallow and deep models in IoT server attack detection provide crucial insights for researchers and practitioners. 
+
+
+
+Shallow models, with simpler architectures and lower computational complexity, exhibit lower CPU and memory usage compared to deep models with multiple layers. This difference is particularly significant in resource-constrained IoT environments where scalability and efficiency are vital.
+
+Shallow models require less RAM for storing and processing model parameters and intermediate computations, contributes to their lower memory consumption. This memory efficiency is essential in IoT settings where resources are limited, enhancing the feasibility of deployment on constrained devices.
+
+Additionally, shallow models demonstrate faster prediction times, in contrast to deep models, which require more time for forward propagation. This difference is crucial for real-time applications like IoT server attack detection, where timely responses are necessary to mitigate security threats effectively.
+In summary, understanding the trade-offs between shallow and deep models is crucial for optimizing detection system performance in IoT environments. By recognizing these differences, researchers and practitioners can make informed decisions regarding model selection and deployment strategies, ultimately enhancing security mechanisms in IoT systems.
+

@@ -1,0 +1,6 @@
+shallow_40 Resource Use :Full Dataset: 
+CPU Usage Before Prediction: 10.7
+Memory Usage Before Prediction: 9138667520
+CPU Usage After Prediction: 5.5
+Memory Usage After Prediction: 9218994176
+Prediction Time: 9.434928894042969 seconds

@@ -1,0 +1,78 @@
+Model,shallow20,deep20,shallow40,deep40
+Prediction Time (s),5.778,7.928,5.952,7.900
+CPU Usage (before),4.0,4.4,4.2,5.6
+CPU Usage (after),5.0,4.3,5.2,4.8
+Memory Usage (before),6441086976,6447198208,6466809856,6464315392
+Memory Usage (after),6529933312,6555541504,6578475008,6580248576
+
+To get the total memory used by the process, you can sum these two values. For example, if the "Memory (Private Working Set)" shows 100 MB and the "Memory (Working Set)" shows 150 MB, the total memory used by the process would be 100 MB + 150 MB = 250 MB.
+
+s20 model Memory 
+Private Working Set 412872
+Memory (Working Set)311224
+CPU 4.59%
+
+D20 model Memory 
+Private Working Set 565444
+Memory Working Set 464120
+CPU 4.30%
+
+S40 model Memory 
+Private Working Set 612192
+Memory Working Set 511056
+CPU 4.57%
+
+D40 model Memory 
+Private Working Set 565896
+Memory Working Set 298704
+CPU 4.29%
+
+Memory Working Set:
+Significance: Represents the total amount of physical memory used by the process/model, including both private and shared memory.
+Importance: This metric gives a broader view of memory usage, including both exclusive and shared resources. It reflects the total impact of the model on system memory.
+
+
+S20 Model: Memory Working Set = 311,224 bytes
+D20 Model: Memory Working Set = 464,120 bytes
+S40 Model: Memory Working Set = 511,056 bytes
+D40 Model: Memory Working Set = 298,704 bytes
+Comparing these values, we can see that:
+
+The S40 Model has the highest Memory Working Set of 511,056 bytes, indicating it uses the most memory among the provided models.
+The D20 Model comes next with a Memory Working Set of 464,120 bytes, indicating it uses a significant amount of memory, although less than the S40 Model.
+The S20 Model follows with a Memory Working Set of 311,224 bytes, indicating it uses less memory compared to the S40 and D20 models.
+The D40 Model has the lowest Memory Working Set of 298,704 bytes, indicating it uses the least amount of memory among the provided models.
+So, in terms of Memory Working Set, the S40 Model uses the most memory, followed by the D20 Model, S20 Model, and D40 Model.
+
+Optimized Architecture: Deep models might be designed with more efficient architectures that require less memory to store parameters and intermediate activations. Optimizations such as parameter sharing, sparse computation, or compression techniques can reduce memory usage without compromising performance.
+Model Complexity: The complexity of a model, including the number of layers, parameters, and computational units, can impact memory usage. Deep models may have fewer parameters or simpler architectures compared to other models, resulting in lower memory requirements.
+Memory Optimization Techniques: Deep learning frameworks and libraries often employ memory optimization techniques to minimize memory usage during model execution. Techniques such as memory reuse, memory pooling, and memory compression can help reduce the memory footprint of deep models.
+Hardware and Runtime Environment: The hardware platform and runtime environment on which the models are executed can also influence memory usage. Different hardware architectures (e.g., CPUs, GPUs) and runtime environments (e.g., TensorFlow, PyTorch) may have different memory management strategies and overhead, leading to variations in memory usage.
+Model Pruning and Quantization: Deep models can undergo pruning and quantization processes to reduce their memory footprint. Pruning removes redundant parameters and connections, while quantization reduces the precision of parameters, both of which can lead to memory savings.
+Batch Size: Deep models may be trained or evaluated with smaller batch sizes, which can reduce memory usage compared to larger batch sizes. Smaller batch sizes require less memory to store intermediate activations and gradients during training or inference.
+Overall, the lower working set memory usage of a deep model could be attributed to a combination of architectural design choices, optimization techniques, and hardware/runtime considerations aimed at minimizing memory requirements while maintaining performance.
+
+
+
+
+
+
+
+Context: If you want to assess the overall memory impact of the model on the system, including shared resources, Memory Working Set is important.
+
+
+s20 model
+Memory 311224
+CPU 4.59%
+
+D20 model
+Memory 464120
+CPU 4.30%
+
+S40 model 
+Memory 511056
+CPU 4.57%
+
+D40 model
+Memory 298704
+CPU 4.29%
