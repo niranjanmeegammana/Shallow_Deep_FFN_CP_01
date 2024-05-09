@@ -22,9 +22,9 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, average_prec
 import matplotlib.pyplot as plt
 from tensorflow.keras.callbacks import EarlyStopping
 
-xmodel="deep_20"
+xmodel="shallow_40"
 # Define the features
-features = ['ct_state_ttl', 'sload', 'rate', 'sttl', 'smean', 'dload', 'sbytes', 'ct_srv_dst', 'ct_dst_src_ltm', 'dbytes', 'ackdat', 'dttl', 'ct_dst_sport_ltm', 'dmean','ct_srv_src', 'dinpkt', 'tcprtt', 'dur', 'synack', 'sinpkt']
+features = ['id', 'dur', 'spkts', 'dpkts', 'sbytes', 'dbytes', 'rate', 'sttl', 'dttl', 'sload', 'dload', 'sloss', 'dloss', 'sinpkt', 'dinpkt', 'sjit', 'djit', 'swin', 'stcpb', 'dtcpb', 'dwin', 'tcprtt', 'synack', 'ackdat', 'smean', 'dmean', 'trans_depth', 'response_body_len', 'ct_srv_src', 'ct_state_ttl', 'ct_dst_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm', 'is_ftp_login', 'ct_ftp_cmd', 'ct_flw_http_mthd', 'ct_src_ltm', 'ct_srv_dst', 'is_sm_ips_ports']
 
 current_folder = "d:\\miniconda\\UNSW-NB15\\testing"
 print(current_folder)
@@ -38,7 +38,7 @@ f_val=datapath + 'unsw-nb15_validation' + split+ '.csv'
 
 f_performance_file=datapath + xmodel+ '.txt'
 
-model_path=modelpath+ xmodel + '_model_ANN5_hp.keras'
+model_path=modelpath+ xmodel+ '_model_ANN5_hp.keras'
 
 print(f_test)
 print(f_train)
@@ -70,6 +70,7 @@ X_test = scaler.transform(X_test)
 X_val = scaler.transform(X_val)
 
 #==================================
+
 # Define a learning rate scheduler function
 def lr_scheduler(epoch, lr):
     if epoch < 10:
@@ -77,33 +78,20 @@ def lr_scheduler(epoch, lr):
     else:
         return lr * tf.math.exp(-0.1)
 
-# Define the function to build the deep ANN model
-def build_model(hp):
+def build_model(hp): # shallow
     model = Sequential()
 
-    # Initialize the number of units for the input layer
-    lu = hp['units']
-
     # Input layer
-    model.add(Dense(units=lu,
+    model.add(Dense(units=512,
                     input_dim=len(features),
                     activation=hp['activation_layer1'],
                     kernel_initializer=hp['weight_initializer'],
                     kernel_regularizer=l1(hp['regularization_strength']) if hp['regularization_type'] == 'l1' else
-                                      l2(hp['regularization_strength']) if hp['regularization_type'] == 'l2' else None))
+                                     l2(hp['regularization_strength']) if hp['regularization_type'] == 'l2' else None))
 
-    # Hidden layers (6 layers)
-    for i in range(1, 7):
-        lu = lu // 2  # Reduce units by half for each subsequent layer
-        model.add(Dense(units=lu,
-                        activation=hp[f'activation_layer{i + 1}'],
-                        kernel_initializer=hp['weight_initializer'],
-                        kernel_regularizer=l1(hp['regularization_strength']) if hp['regularization_type'] == 'l1' else
-                                          l2(hp['regularization_strength']) if hp['regularization_type'] == 'l2' else None))
-
-        # Dropout layer (optional)
-        if hp['use_dropout']:
-            model.add(Dropout(rate=hp['dropout_rate']))
+    # Dropout layer (optional)
+    if hp['use_dropout']:
+        model.add(Dropout(rate=hp['dropout_rate']))
 
     # Output layer
     model.add(Dense(1, activation='sigmoid'))
@@ -120,32 +108,26 @@ def build_model(hp):
     elif hp['optimizer'] == 'sgd':
         optimizer = tf.keras.optimizers.SGD(learning_rate=hp['learning_rate'], momentum=0.9)
 
-    # Compile the model
     model.compile(optimizer=optimizer,
                   loss='binary_crossentropy',
                   metrics=['accuracy'])
 
     return model
 
-# Define the hyperparameters for building the deep ANN model
+# Example usage:
+# Assuming 'best_hyperparameters' is a dictionary containing the best hyperparameters from random search
+
 best_hyperparameters = {
-    'units': 256,
-    'activation_layer1': 'tanh',
-    'activation_layer2': 'tanh',
-    'activation_layer3': 'relu',
-    'activation_layer4': 'relu',
-    'activation_layer5': 'relu',
-    'activation_layer6': 'relu',
-    'activation_layer7': 'leaky_relu',
-    'optimizer': 'adam',
+    'activation_layer1': 'relu',
+    'optimizer': 'rmsprop',
     'learning_rate': 0.001,
     'weight_initializer': 'he_normal',
-    'batch_size': 8,
-    'regularization_type': 'l1',
-    'regularization_strength': 0.0,
-    'use_lr_scheduler': 1,
-    'use_dropout': 1,
-    'dropout_rate': 0.0
+    'batch_size': 256,
+    'regularization_type': '',
+    'regularization_strength': 0.01,
+    'use_lr_scheduler': 0,
+    'use_dropout': 0,
+    'dropout_rate': 0.3
 }
 epochs_to_run=200
 
@@ -307,7 +289,7 @@ else:
 # Open the file in write mode
 with open(output_file_path, 'w') as file:
     # Write performance metrics to the file
-    file.write("# Deep 20 Performance Metrics \n")
+    file.write("# Shallow 40 Performance Metrics \n")
     file.write(f"Epochs to run:{epochs_to_run}\n")
     file.write(f"Last epoch {epstop} :{last_epoch}\n")
     file.write(f"Early stop epoch {epstop} :{early_epoch}\n")

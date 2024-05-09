@@ -22,9 +22,9 @@ from sklearn.metrics import roc_curve, auc, precision_recall_curve, average_prec
 import matplotlib.pyplot as plt
 from tensorflow.keras.callbacks import EarlyStopping
 
-xmodel="deep_20"
+xmodel="deep_40"
 # Define the features
-features = ['ct_state_ttl', 'sload', 'rate', 'sttl', 'smean', 'dload', 'sbytes', 'ct_srv_dst', 'ct_dst_src_ltm', 'dbytes', 'ackdat', 'dttl', 'ct_dst_sport_ltm', 'dmean','ct_srv_src', 'dinpkt', 'tcprtt', 'dur', 'synack', 'sinpkt']
+features = ['id', 'dur', 'spkts', 'dpkts', 'sbytes', 'dbytes', 'rate', 'sttl', 'dttl', 'sload', 'dload', 'sloss', 'dloss', 'sinpkt', 'dinpkt', 'sjit', 'djit', 'swin', 'stcpb', 'dtcpb', 'dwin', 'tcprtt', 'synack', 'ackdat', 'smean', 'dmean', 'trans_depth', 'response_body_len', 'ct_srv_src', 'ct_state_ttl', 'ct_dst_ltm', 'ct_src_dport_ltm', 'ct_dst_sport_ltm', 'ct_dst_src_ltm', 'is_ftp_login', 'ct_ftp_cmd', 'ct_flw_http_mthd', 'ct_src_ltm', 'ct_srv_dst', 'is_sm_ips_ports']
 
 current_folder = "d:\\miniconda\\UNSW-NB15\\testing"
 print(current_folder)
@@ -195,7 +195,7 @@ print("Maximum validation accuracy:", max_val_acc)
 print("Epoch with minimum validation loss:", min_val_loss_epoch)
 print("Minimum validation loss:", min_val_loss)
 
-# Save the shallow ANN model to model_path
+# Save the dee[ ANN model to model_path
 ann_model.save(model_path)
 
 print(model_path, " saved")
@@ -307,7 +307,7 @@ else:
 # Open the file in write mode
 with open(output_file_path, 'w') as file:
     # Write performance metrics to the file
-    file.write("# Deep 20 Performance Metrics \n")
+    file.write("# Deep40 Performance Metrics \n")
     file.write(f"Epochs to run:{epochs_to_run}\n")
     file.write(f"Last epoch {epstop} :{last_epoch}\n")
     file.write(f"Early stop epoch {epstop} :{early_epoch}\n")
